@@ -1,0 +1,35 @@
+<pre id="pre" style="font-size:200%"></pre>
+<script>
+const cities = [
+    'Asia/Tokyo',
+    'Asia/Taipei',
+    'Etc/UTC',
+    'America/Sao_Paulo',
+    'America/New_York',
+    'America/Chicago',
+    'America/Phoenix',
+    'America/Los_Angeles',
+];
+function update() {
+    const now = new Date();
+    const opt = {
+        weekday: 'short',
+        year: 'numeric',
+        month: '2-digit',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: false,
+        timeZoneName: 'long',
+    };
+    let str = '';
+    for (let i = 0; i < cities.length; i++) {
+        opt.timeZone = cities[i];
+        str += now.toLocaleString('en', opt ) + '\n';
+    }
+    document.getElementById('pre').innerHTML = str;
+}
+update()
+setInterval(update, 1000);
+</script>

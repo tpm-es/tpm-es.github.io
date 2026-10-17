@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<script>
+const air_density = 1.193;
+const air_kinematic_viscocity = 0.000015;
+const roughness_galvanized_steel = 0.009 * 0.001;
+const roughness_carbon_steel = 0.03 * 0.001;
+const roughness_polymer = 0.005 * 0.001;
+const roughness_fiberglass = 0.09 * 0.001;
+const roughness_rc = 3.0 * 0.001;
+
+function flowVelocity(volume_flow, crosssection_area) {
+    return volume_flow / crosssection_area;
+}
+
+function dynamicPressure(flow_velocity, fluid_density) {
+    return 0.5 * flow_velocity * flow_velocity * fluid_density;
+}
+
+function reynoldsNumber(flow_velocity, characteristic_diameter, kinematic_viscocity) {
+    return flow_velocity * characteristic_diameter / kinematic_viscocity;
+}
+
+function relativeRoughness(absolute_roughness, characteristic_diameter) {
+    return absolute_roughness / characteristic_diameter;
+}
+
+function frictionFactor(reynolds_number, relative_roughness) {
+    // using churchill's approximation
+    const theta_1 = Math.pow(-2.457 * Math.log(Math.pow(7.0 / reynolds_number, 0.9) + 0.27 * relative_roughness), 16);
+    const theta_2 = Math.pow(37530 / reynolds_number, 16);
+    return 8.0 * Math.pow(Math.pow(8.0 / reynolds_number, 12) + Math.pow(theta_1 + theta_2, -1.5), 1 / 12);
+}
+
+function pressureGradient(dynamic_pressure, friction_factor, characteristic_diameter) {
+    return dynamic_pressure * friction_factor / characteristic_diameter;
+}
+
+function pressureDrop(effective_length, pressure_gradient) {
+    return effective_length * pressure_gradient;
+}
+
+function lossCoefficient(effective_length, friction_factor, characteristic_diameter) {
+    return effective_length * friction_factor / characteristic_diameter;
+}
+
+function effectiveLength(loss_coefficient, friction_factor, characteristic_diameter) {
+    return loss_coefficient * characteristic_diameter / friction_factor;
+}
+
+function preventEnter(e) {
+    if (event.key == 'Enter') {
+        e.preventDefault();
+        e.target.blur();
+    }
+}
+
+function updateRow(target) {
+    const row = target.parentElement;
+    if (!row.dirty) return;
+    const head = row.parentElement.children[0];
+    const dict = {};
+    for (let i = 0; i < row.children.length; i++) {
+        const key = head.children[i].id;
+        const cell = row.children[i];
+        if (!key.startsWith('header-')) continue;
+        dict[key] = cell;
+    }
+    const Q = Number(dict['header-q'].textContent);
+    const D = Number(dict['header-w'].textContent);
+    const L = Number(dict['header-l'].textContent);
+    const E = roughness_galvanized_steel;
+    const A = ('diam' == dict['header-h'].textContent) ? D * D * Math.PI * 0.25 : D * Number(dict['header-h'].textContent);
+    const rho = air_density;
+    const nu = air_kinematic_viscocity;
+
+    const V = flowVelocity(Q / 3600, A);
+    const Pv = dynamicPressure(V, rho);
+    const Re = reynoldsNumber(V, D, nu);
+    const epsilon = relativeRoughness(E, D);
+    const f_D = frictionFactor(Re, epsilon);
+    const F = pressureGradient(Pv, f_D, D);
+    const PD = pressureDrop(L, F) * Number(dict['header-qty'].textContent);
+    const C = lossCoefficient(L, f_D, D);
+    const L_eff = C * D / f_D;
+
+
+    dict['header-v'].textContent = V;
+    dict['header-pv'].textContent = Pv;
+    dict['header-re'].textContent = Re;
+    // dict['header-c'].textContent = C;
+    // dict['header-leff'].textContent = L_eff;
+    dict['header-dpdl'].textContent = F;
+    dict['header-dp'].textContent = PD;
+    
+
+
+}
+</script>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+
+<table onkeydown="preventEnter(event)" oninput="event.target.parentElement.dirty = true" onfocusout="updateRow(event.target)">
+    <tbody id="output">
+        <tr>
+            <th id="header-name" scope="col">Item</th>
+            <th id="header-w" scope="col">W (m)</th>
+            <th id="header-h" scope="col">H (m)</th>
+            <th id="header-l" scope="col">L (m)</th>
+            <th id="header-c" scope="col">C</th>
+            <th id="header-q" scope="col">Q (m&sup3;/hr)</th>
+            <th id="header-v" scope="col">V (m/s)</th>
+            <th id="header-re" scope="col">Re</th>
+            <th id="header-pv" scope="col">Pv (Pa)</th>
+            <!-- <th id="header-leff" scope="col">L<sub>eff</sub></th> -->
+            <th id="header-dpdl" scope="col">dP/dL (Pa/m)</th>
+            <th id="header-qty" scope="col">Q'ty</th>
+            <th id="header-dp" scope="col">&Delta;P (Pa)</th>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+maybe W|H|L|C|Q|V|Re|Pv|Leff|dP/dL|Q'ty|deltaP where betwen Pv and Leff is fD/D
+
+<script>
+const input = [];
+{
+    let Q, D, L, E;
+
+    Q = 120;
+    D = 0.10;
+    L = 2.0;
+    E = roughness_galvanized_steel
+    input.push({
+        name: "duct-AB",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    });
+
+    Q = 240;
+    D = 0.20;
+    L = 33.5;
+    input.push({
+        name: "duct-BC",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+
+    Q = 5340
+    D = 0.50
+    L = 10.5
+    input.push({
+        name: "duct-CD",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+
+    Q = 10440
+    D = 0.65
+    L = 14.0
+    input.push({
+        name: "duct-DE",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+
+    Q = 20000
+    D = 0.80
+    L = 2.0
+    input.push({
+        name: "duct-EF",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+
+    L = 5.5
+    input.push({
+        name: "duct-FG",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+
+    D = 0.9
+    L = 4.5
+    input.push({
+        name: "duct-HI",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.9 * 0.9,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+
+    Q = 14000
+    D = 0.6
+    L = 1.0
+    input.push({
+        name: "duct-IJ",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+    input.push({
+        name: "duct-KL",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+
+    D = 0.8
+    L = 9.5
+    input.push({
+        name: "duct-LM",
+        Q: Q,
+        D: D,
+        L: L,
+        E: E,
+        A: 0.25 * D * D * Math.PI,
+        rho: air_density,
+        nu: air_kinematic_viscocity,
+    })
+}
+
+for (const v of input) {
+    const name = v.name;
+    const Q = v.Q;
+    const D = v.D;
+    const L = v.L;
+    const E = v.E;
+    const A = v.A;
+    const rho = v.rho;
+    const nu = v.nu;
+
+    const V = flowVelocity(Q / 3600, A);
+    const Pv = dynamicPressure(V, rho);
+    const Re = reynoldsNumber(V, D, nu);
+    const epsilon = relativeRoughness(E, D);
+    const f_D = frictionFactor(Re, epsilon);
+    const F = pressureGradient(Pv, f_D, D);
+    const PD = pressureDrop(L, F);
+    const C = lossCoefficient(L, f_D, D);
+
+    const row = document.createElement('tr');
+    row.innerHTML = (
+        `<td contenteditable="plaintext-only">` + name + '</td>' +
+        '<td contenteditable="plaintext-only">' + D + '</td>' +
+        '<td contenteditable="plaintext-only">' + (A == D*D ? D : 'diam') + '</td>' +
+        '<td contenteditable="plaintext-only">' + L + '</td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td contenteditable="plaintext-only">' + Q + '</td>' +
+        '<td>' + V + '</td>' +
+        '<td>' + Re + '</td>' +
+        '<td>' + Pv + '</td>' +
+        // '<td>' + L + '</td>' +
+        '<td>' + F + '</td>' +
+        '<td contenteditable="plaintext-only">1</td>' +
+        '<td>' + PD + '</td>'
+    );
+
+    document.getElementById('output').appendChild(row);
+}
+</script>
