@@ -58,7 +58,7 @@ function preventEnter(e) {
 function updateRow(target) {
     const row = target.parentElement;
     if (!row.dirty) return;
-    const head = row.parentElement.children[0];
+    const head = document.getElementById('headers').children[0];
     const dict = {};
     for (let i = 0; i < row.children.length; i++) {
         const key = head.children[i].id;
@@ -88,9 +88,7 @@ function updateRow(target) {
     dict['header-v'].textContent = V;
     dict['header-pv'].textContent = Pv;
     dict['header-re'].textContent = Re;
-    // dict['header-c'].textContent = C;
-    // dict['header-leff'].textContent = L_eff;
-    dict['header-dpdl'].textContent = F;
+    dict['header-c'].textContent = C;
     dict['header-dp'].textContent = PD;
     
 
@@ -103,25 +101,29 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+[contenteditable="plaintext-only"]:hover {
+    background-color: lime;
+}
 </style>
 
 <table onkeydown="preventEnter(event)" oninput="event.target.parentElement.dirty = true" onfocusout="updateRow(event.target)">
-    <tbody id="output">
+    <thead id="headers">
         <tr>
             <th id="header-name" scope="col">Item</th>
             <th id="header-w" scope="col">W (m)</th>
             <th id="header-h" scope="col">H (m)</th>
             <th id="header-l" scope="col">L (m)</th>
-            <th id="header-c" scope="col">C</th>
             <th id="header-q" scope="col">Q (m&sup3;/hr)</th>
             <th id="header-v" scope="col">V (m/s)</th>
             <th id="header-re" scope="col">Re</th>
             <th id="header-pv" scope="col">Pv (Pa)</th>
-            <!-- <th id="header-leff" scope="col">L<sub>eff</sub></th> -->
-            <th id="header-dpdl" scope="col">dP/dL (Pa/m)</th>
+            <th id="header-c" scope="col">C</th>
             <th id="header-qty" scope="col">Q'ty</th>
             <th id="header-dp" scope="col">&Delta;P (Pa)</th>
         </tr>
+    </thead>
+    <tbody id="output">
     </tbody>
 </table>
 
@@ -293,13 +295,11 @@ for (const v of input) {
         '<td contenteditable="plaintext-only">' + D + '</td>' +
         '<td contenteditable="plaintext-only">' + (A == D*D ? D : 'diam') + '</td>' +
         '<td contenteditable="plaintext-only">' + L + '</td>' +
-        '<td contenteditable="plaintext-only"></td>' +
         '<td contenteditable="plaintext-only">' + Q + '</td>' +
         '<td>' + V + '</td>' +
         '<td>' + Re + '</td>' +
         '<td>' + Pv + '</td>' +
-        // '<td>' + L + '</td>' +
-        '<td>' + F + '</td>' +
+        '<td>' + C + '</td>' +
         '<td contenteditable="plaintext-only">1</td>' +
         '<td>' + PD + '</td>'
     );
