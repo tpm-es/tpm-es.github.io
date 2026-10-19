@@ -71,6 +71,7 @@ function preventEnter(e) {
         if (e.target.textContent.length == 0) {
             if (e.target.cellIndex == 0 && e.target.parentElement.rowIndex > 0) {
                 e.target.parentElement.remove();
+                refreshAll();
             }
         }
     }
@@ -156,10 +157,8 @@ function updateRow(row) {
         dict['header-pv'].textContent = Pv == Pv ? Pv : '';
     }
     
-
     let tot = 0;
     const rows = document.getElementById('output').children;
-    console.log(rows.length);
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         tot += Number(row.cells[row.cells.length - 1].textContent);
@@ -191,6 +190,10 @@ TODO:
 - pressure-dependent viscosity/density?
 - 3-K method instead of single K? Data description field?
 - Just use Typst to generate the whole document?
+
+NOTES:
+- ctrl+enter in any cell to add row
+- ctrl+backspace in first cell to delete that row (first cell needs to be empty)
 </pre>
 
 <hr>
