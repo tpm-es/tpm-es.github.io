@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<script>
+const air_density = 1.193;
+const air_kinematic_viscosity = 0.000015;
+const roughness_galvanized_steel = 0.009 * 0.001;
+const roughness_carbon_steel = 0.03 * 0.001;
+const roughness_polymer = 0.005 * 0.001;
+const roughness_fiberglass = 0.09 * 0.001;
+const roughness_rc = 3.0 * 0.001;
+
+function flowVelocity(volume_flow, crosssection_area) {
+    return volume_flow / crosssection_area;
+}
+
+function dynamicPressure(flow_velocity, fluid_density) {
+    return 0.5 * flow_velocity * flow_velocity * fluid_density;
+}
+
+function reynoldsNumber(flow_velocity, characteristic_diameter, kinematic_viscosity) {
+    return flow_velocity * characteristic_diameter / kinematic_viscosity;
+}
+
+function relativeRoughness(absolute_roughness, characteristic_diameter) {
+    return absolute_roughness / characteristic_diameter;
+}
+
+function frictionFactor(reynolds_number, relative_roughness) {
+    // using churchill's approximation
+    const theta_1 = Math.pow(-2.457 * Math.log(Math.pow(7.0 / reynolds_number, 0.9) + 0.27 * relative_roughness), 16);
+    const theta_2 = Math.pow(37530 / reynolds_number, 16);
+    return 8.0 * Math.pow(Math.pow(8.0 / reynolds_number, 12) + Math.pow(theta_1 + theta_2, -1.5), 1 / 12);
+}
+
+function pressureGradient(dynamic_pressure, friction_factor, characteristic_diameter) {
+    return dynamic_pressure * friction_factor / characteristic_diameter;
+}
+
+function pressureDrop(effective_length, pressure_gradient) {
+    return effective_length * pressure_gradient;
+}
+
+function lossCoefficient(effective_length, friction_factor, characteristic_diameter) {
+    return effective_length * friction_factor / characteristic_diameter;
+}
+
+function effectiveLength(loss_coefficient, friction_factor, characteristic_diameter) {
+    return loss_coefficient * characteristic_diameter / friction_factor;
+}
+
+function refreshAll() {
+    const rows = document.getElementById('output').children;
+    for (let i = 0; i < rows.length; i++) {
+        updateRow(rows[i]);
+    }
+}
+
+function preventEnter(e) {
+    if (event.key == 'Enter') {
+        e.preventDefault();
+        if (event.ctrlKey) {
+            const row = newRow();
+            e.target.parentElement.insertAdjacentElement('afterend', row);
+            updateRow(row);
+            const cell_index = e.target.cellIndex;
+            row.cells[cell_index].focus()
+        } else {
+            e.target.blur();
+        }
+    } else if (event.ctrlKey && event.key == 'Backspace') {
+        if (e.target.textContent.length == 0) {
+            if (e.target.cellIndex == 0 && e.target.parentElement.rowIndex > 0) {
+                e.target.parentElement.remove();
+                refreshAll();
+            }
+        }
+    }
+}
+
+function newRow() {
+    const row = document.createElement('tr');
+    row.innerHTML = (
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td></td>' +
+        '<td></td>' +
+        '<td></td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td contenteditable="plaintext-only"></td>' +
+        '<td></td>'
+    );
+    return row;
+}
+
+function makeRowDict(row) {
+    const head = document.getElementById('headers').children[0];
+    const dict = {};
+    for (let i = 0; i < row.children.length; i++) {
+        const key = head.children[i].id;
+        const cell = row.children[i];
+        if (!key.startsWith('header-')) continue;
+        dict[key] = cell;
+    }
+    return dict;
+}
+
+function updateRow(row) {
+    const dict = makeRowDict(row);
+    const Q = Number(dict['header-q'].textContent);
+    const D = Number(dict['header-w'].textContent);
+    const L = Number(dict['header-l'].textContent);
+    const n = Number(dict['header-qty'].textContent)
+    const E = Number(document.getElementById('roughness').value);
+    const A = ('diam' == dict['header-h'].textContent) ? D * D * Math.PI * 0.25 : D * Number(dict['header-h'].textContent);
+    const rho = Number(document.getElementById('density').value);
+    const nu = Number(document.getElementById('viscosity').value);
+
+    const V = flowVelocity(Q / 3600, A);
+    const Pv = dynamicPressure(V, rho);
+    const Re = reynoldsNumber(V, D, nu);
+    const epsilon = relativeRoughness(E, D);
+    const f_D = frictionFactor(Re, epsilon);
+    const F = pressureGradient(Pv, f_D, D);
+    const PD = pressureDrop(L, F) * n;
+    const C = lossCoefficient(L, f_D, D);
+
+    if (dict['header-l'].textContent.length == 0) {
+        dict['header-c'].setAttribute('contenteditable', 'plaintext-only');
+        dict['header-c'].style.fontStyle = 'italic';
+    } else {
+        dict['header-c'].removeAttribute('contenteditable');
+        dict['header-c'].style.fontStyle = null;
+    }
+
+    if (dict['header-q'].textContent.length == 0) {
+        dict['header-dp'].setAttribute('contenteditable', 'plaintext-only');
+        dict['header-dp'].style.fontStyle = 'italic';
+    } else {
+        dict['header-dp'].removeAttribute('contenteditable');
+        dict['header-dp'].style.fontStyle = null;
+    }
+
+    if (dict['header-q'].textContent.length == 0) {
+        dict['header-v'].textContent = '';
+        dict['header-re'].textContent = '';
+        dict['header-pv'].textContent = '';
+    } else {        
+        if (dict['header-l'].textContent.length == 0) {
+            const PD_c = n * Pv * Number(dict['header-c'].textContent);
+            dict['header-dp'].textContent = PD_c== PD_c ? PD_c : '';
+        } else {
+            dict['header-c'].textContent = C == C ? C : '';
+            dict['header-dp'].textContent = PD == PD ? PD : '';
+        }
+
+        dict['header-v'].textContent = V == V ? V : '';
+        dict['header-re'].textContent = Re == Re ? Re : '';
+        dict['header-pv'].textContent = Pv == Pv ? Pv : '';
+    }
+    
+    let tot = 0;
+    const rows = document.getElementById('output').children;
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        tot += Number(row.cells[row.cells.length - 1].textContent);
+    }
+    document.getElementById('total').textContent = tot;
+}
+
+function exportTable() {
+    const summary = [];
+    const rows = document.getElementById('output').children;
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const dict = makeRowDict(row);
+        const entry = {}
+        for (const key in dict) {
+            entry[key.replace('header-', '')] = dict[key].textContent;
+        }
+        summary[i] = entry;
+    }
+    document.getElementById('importexport').textContent = JSON.stringify(summary, null, 2);
+}
+
+function importTable() {
+    const summary = JSON.parse(document.getElementById('importexport').textContent);
+    const out = document.getElementById('output');
+    out.innerHTML = '';
+    if (summary.length > 0) {
+        for (let i = 0; i < summary.length; i++) {
+            const row = newRow();
+            out.appendChild(row);
+            const dict = makeRowDict(row);
+            const entry = summary[i];
+            for (const key in entry) {
+                dict['header-' + key].textContent = entry[key];
+            }
+        }
+    } else {
+        const row = newRow();
+        out.appendChild(row);
+    }
+    refreshAll();
+}
+
+window.onload = async function() {
+    
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has("data")) {
+        const url = searchParams.get("data");
+        document.getElementById('importexport').textContent = await (await fetch(url)).text();
+        importTable();
+    }
+    refreshAll();
+}
+</script>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    height: 1em;
+}
+
+td[contenteditable="plaintext-only"]:hover {
+    background-color: lime;
+}
+</style>
+
+<pre>
+TODO:
+- per-element roughness?
+- pressure-dependent viscosity/density?
+- 3-K method instead of single K? Data description field?
+- Just use Typst to generate the whole document?
+
+NOTES:
+- ctrl+enter in any cell to add row
+- ctrl+backspace in first cell to delete that row (first cell needs to be empty)
+</pre>
+
+<hr>
+
+<form onchange="refreshAll()">
+<label>Fluid Kinematic Viscosity (m&sup2;/s)</label>
+<input id="viscosity" placeholder="air viscosity" value="0.000015"><br>
+<label>Fluid Density (kg/m&sup3;)</label>
+<input id="density" placeholder="air density" value="1.193"><br>
+<label>Conduit Roughness (1/m)</label>
+<input id="roughness" placeholder="conduit roughness" value="0.000009">
+</form>
+<hr>
+
+<table onkeydown="preventEnter(event)" oninput="updateRow(event.target.parentElement)">
+    <thead id="headers">
+        <tr>
+            <th id="header-section" scope="col">Section</th>
+            <th id="header-fitting" scope="col">Fitting</th>
+            <th id="header-w" scope="col">Width (m)</th>
+            <th id="header-h" scope="col">Height (m)</th>
+            <th id="header-q" scope="col">Volumetric Flow (m&sup3;/hr)</th>
+            <th id="header-v" scope="col">Flow Velocity (m/s)</th>
+            <th id="header-re" scope="col">Reynolds Number</th>
+            <th id="header-pv" scope="col">Velocity Pressure (Pa)</th>
+            <th id="header-l" scope="col">Length (m)</t</th>
+            <th id="header-c" scope="col">Loss Coefficient</th>
+            <th id="header-qty" scope="col">Q'ty</th>
+            <th id="header-dp" scope="col">Pressure Drop (Pa)</th>
+        </tr>
+    </thead>
+    <tbody id="output">
+        <tr>
+            <td contenteditable="plaintext-only"></td>
+            <td contenteditable="plaintext-only"></td>
+            <td contenteditable="plaintext-only"></td>
+            <td contenteditable="plaintext-only"></td>
+            <td contenteditable="plaintext-only"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td contenteditable="plaintext-only"></td>
+            <td></td>
+            <td contenteditable="plaintext-only"></td>
+            <td></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="11" align="right">Duct Static Pressure (Pa):</th>
+            <th id="total"></th>
+        </tr>
+    </tfoot>
+</table>
+
+<hr>
+
+<button onclick="importTable()">Import</button>
+<button onclick="exportTable()">Export</button>
+
+<br>
+
+<pre contenteditable="plaintext-only" id="importexport" style="outline:2px inset"></pre>
