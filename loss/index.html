@@ -210,10 +210,15 @@ function importTable() {
 window.onload = async function() {
     
     const searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.has("data")) {
-        const url = searchParams.get("data");
+    if (searchParams.has('data')) {
+        const url = searchParams.get('data');
         document.getElementById('importexport').textContent = await (await fetch(url)).text();
         importTable();
+    }
+    for (const key of [ 'roughness', 'density', 'viscosity' ]) {
+        if (searchParams.has(key)) {
+            document.getElementById(key).value = searchParams.get(key);
+        }
     }
     refreshAll();
 }
