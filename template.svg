@@ -101,6 +101,7 @@
   <text x="8.9587" y="-9.0810" font-size="0.17024" font-family="Arial">TSMC PM</text>
   <text x="8.9587" y="-8.8349" font-size="0.17024" font-family="Arial">TSMC LSC</text>
 
+  <image x="0.9438" y="-2.3831" width="1.7260" height="1.2745" href="tsmc.svg"></image>
 
   <g fill="none" stroke="lime" stroke-width="0.01">
     <rect x="0" y="-11" width="17" height="11"/>
