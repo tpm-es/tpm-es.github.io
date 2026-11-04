@@ -103,22 +103,8 @@
 
   <image x="0.9438" y="-2.3831" width="1.7260" height="1.2745" href="tsmc.svg"></image>
 
-  <g fill="none" stroke="lime" stroke-width="0.01">
-    <rect x="0" y="-11" width="17" height="11"/>
-    <line x1="0" x2="17" y1="-10.5513" y2="-10.5513" />
-    <line x1="0" x2="17" y1="-10.4885" y2="-10.4885" />
-    <line x1="16.4112" x2="16.4112" y1="0" y2="-11" />
-    <line x1="14.4918" x2="14.4918" y1="0" y2="-11" />
-
-    <line x1="0" x2="17" y1="-0.6092" y2="-0.6092" />
-
-
-    <line x1="0" x2="17" y1="-4.8739" y2="-4.8739" />
-
-    <line x1="14.1624" x2="14.1624" y1="0" y2="-11" />
-    
-
-    
+  <g fill="none" stroke="lime" stroke-width="0.005">
+    <rect x="0" y="-11" width="17" height="11"/>    
     <rect x="0.9438" y="-2.3831" width="1.7260" height="1.2745"/>
   </g>
 
