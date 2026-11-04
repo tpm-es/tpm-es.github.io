@@ -1,0 +1,121 @@
+<svg viewBox="0 -11 17 11" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="black" stroke-width="0.01">
+    <rect x="0.2835" y="-10.7165" width="16.5465" height="10.4330" />
+    <line x1="14.0989" y1="-10.7165" x2="14.0989" y2="-0.2835" />
+    <line x1="14.7225" y1="-4.8114" x2="14.7225" y2="-8.5888" />
+    <line x1="14.0989" y1="-6.7001" x2="14.7225" y2="-6.7001" />
+    <line x1="14.4107" y1="-4.8114" x2="14.4107" y2="-6.7001" />
+    <path d="M 14.0989 -10.2898 H 16.8300
+             M 14.0989 -10.1162 H 16.8300
+             M 14.0989  -9.9425 H 16.8300
+             M 14.0989  -9.7689 H 16.8300
+             M 14.0989  -9.5952 H 16.8300
+             M 14.0989  -9.4216 H 16.8300
+             M 14.0989  -9.2479 H 16.8300
+             M 14.0989  -9.0743 H 16.8300
+             M 14.0989  -8.9006 H 16.8300
+             M 14.0989  -8.5888 H 16.8300
+             M 14.0989  -4.8114 H 16.8300
+             M 14.0989  -3.6898 H 16.8300
+             M 14.0989  -3.3680 H 16.8300
+             M 14.0989  -3.0470 H 16.8300
+             M 14.0989  -2.7260 H 16.8300
+             M 14.0989  -0.7260 H 16.8300" />
+    <path d="M 14.5353 -10.2898 V -8.5888
+             M 15.1022 -10.2898 V -8.5888
+             M 15.6692 -10.2898 V -8.5888" />
+
+
+
+
+
+    <rect x="8.6369" y="-10.4714" width="4.9838" height="1.6976" />
+    <path d="M 8.6369 -10.2310 H 13.6207
+             M 8.6369 -9.9906 H 13.6207
+             M 8.6369 -9.7501 H 13.6207
+             M 8.6369 -9.5097 H 13.6207
+             M 8.6369 -9.2692 H 13.6207
+             M 8.6369 -9.0288 H 13.6207" />
+    <path d="M 10.1425 -10.2310 V -8.7738
+             M 12.0023 -10.2310 V -8.7738" />
+
+
+
+  </g>
+  <text x="15.4514" y="-10.552" font-size="0.13132" font-weight="bold" text-anchor="middle" font-family="Arial">CONFIDENTIAL INFORMATION</text>
+  <text x="15.4514" y="-10.395" font-size="0.13132" font-weight="bold" text-anchor="middle" font-family="Arial">TSMC PROJECT</text>
+
+
+
+
+
+
+  <text x="14.2186" y="-8.7452" font-size="0.0984" font-family="Arial">版次</text>
+  <text x="14.7265" y="-8.7452" font-size="0.0984" font-family="Arial">日期</text>
+  <text x="15.2285" y="-8.7452" font-size="0.0984" font-family="Arial">修正者</text>
+  <text x="15.7436" y="-8.7452" font-size="0.0984" font-family="Arial">修　正</text>
+
+
+
+  <text x="14.3171" y="-8.6461" font-size="0.08274" text-anchor="middle" font-family="Arial">REV.</text>
+  <text x="14.8188" y="-8.6461" font-size="0.08274" text-anchor="middle" font-family="Arial">DATE</text>
+  <text x="15.3857" y="-8.6461" font-size="0.08274" text-anchor="middle" font-family="Arial">REV. BY</text>
+  <text x="15.7456" y="-8.6461" font-size="0.08274" font-family="Arial">DESCRIPTION</text>
+
+
+
+
+
+
+  <text x="14.1614" y="-4.8739" transform="rotate(-90 14.1624 -4.8739) translate(0 0.0591)" font-size="0.08274" font-family="Arial">ENGINEERING FIRM:</text>
+  <text x="14.2814" y="-4.8739" transform="rotate(-90 14.2814 -4.8739) translate(0 0.0591)" font-size="0.08274" font-weight="bold" font-family="Arial">YAHO SYSTEM TECH.</text>
+  <text x="14.1614" y="-6.7626" transform="rotate(-90 14.1624 -6.7626) translate(0 0.0591)" font-size="0.08274" font-family="Arial">ADDRESS:</text>
+  <text x="14.2814" y="-6.7626" transform="rotate(-90 14.2814 -6.7626) translate(0 0.0591)" font-size="0.08274" font-weight="bold" font-family="Arial">5260 W PHELPS RD, GLENDALE, AZ, 85306</text>
+  <text x="14.4732" y="-4.8739" transform="rotate(-90 14.4732 -4.8739) translate(0 0.0591)" font-size="0.08274" font-family="Arial">PHONE:</text>
+  <text x="14.5932" y="-4.8739" transform="rotate(-90 14.5932 -4.8739) translate(0 0.0591)" font-size="0.08274" font-weight="bold" font-family="Arial">480-504-3023</text>
+
+
+
+
+
+  <text x="14.1661" y="-4.6956" font-size="0.08274" font-family="Arial">TITLE</text>
+
+  <text x="14.1555" y="-3.5729" font-size="0.08274" font-family="Arial">PROJECT:</text>
+  <text x="14.1555" y="-3.2407" font-size="0.08274" font-family="Arial">PACKAGE NAME:</text>
+  <text x="14.1555" y="-2.9373" font-size="0.08274" font-family="Arial">DWG FILE NAME:</text>
+  <text x="14.1555" y="-0.6092" font-size="0.08274" font-family="Arial">DRAWING NAME:</text>
+  <text x="16.3040" y="-0.8981" font-size="0.08274" font-family="Arial">SCALE:</text>
+  <text x="16.4879" y="-0.7865" font-size="0.08274" font-family="Arial">N.T.S.</text>
+
+
+
+
+  
+  <text x="11.0758" y="-10.2910" font-size="0.17024" text-anchor="middle" font-family="Arial">DESIGN REVIEW</text>
+  <text x="8.9587" y="-10.0549" font-size="0.17024" font-family="Arial">APPROVER</text>
+  <text x="10.5753" y="-10.0549" font-size="0.17024" font-family="Arial">SIGNATURE</text>
+  <text x="12.5969" y="-10.0549" font-size="0.17024" font-family="Arial">DATE</text>
+  <text x="8.9587" y="-9.8140" font-size="0.17024" font-family="Arial">YAHO WGL</text>
+  <text x="8.9587" y="-9.5732" font-size="0.17024" font-family="Arial">TSMC EE</text>
+  <text x="8.9587" y="-9.3271" font-size="0.17024" font-family="Arial">TSMC FD</text>
+  <text x="8.9587" y="-9.0810" font-size="0.17024" font-family="Arial">TSMC PM</text>
+  <text x="8.9587" y="-8.8349" font-size="0.17024" font-family="Arial">TSMC LSC</text>
+
+
+  <g fill="none" stroke="lime" stroke-width="0.01">
+    <rect x="0" y="-11" width="17" height="11"/>
+    <line x1="0" x2="17" y1="-10.5513" y2="-10.5513" />
+    <line x1="0" x2="17" y1="-10.4885" y2="-10.4885" />
+    <line x1="16.4112" x2="16.4112" y1="0" y2="-11" />
+    <line x1="14.4918" x2="14.4918" y1="0" y2="-11" />
+
+    <line x1="0" x2="17" y1="-0.6092" y2="-0.6092" />
+
+
+    <line x1="0" x2="17" y1="-4.8739" y2="-4.8739" />
+
+    <line x1="14.1624" x2="14.1624" y1="0" y2="-11" />
+    
+  </g>
+
+</svg>
