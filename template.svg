@@ -1,5 +1,5 @@
 <svg viewBox="0 -11 17 11" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" stroke="black" stroke-width="0.01">
+  <g fill="none" stroke="currentColor" stroke-width="0.01">
     <rect x="0.2835" y="-10.7165" width="16.5465" height="10.4330" />
     <line x1="14.0989" y1="-10.7165" x2="14.0989" y2="-0.2835" />
     <line x1="14.7225" y1="-4.8114" x2="14.7225" y2="-8.5888" />
@@ -50,16 +50,16 @@
 
 
 
-  <text x="14.2186" y="-8.7452" font-size="0.0984" font-family="Arial">版次</text>
-  <text x="14.7265" y="-8.7452" font-size="0.0984" font-family="Arial">日期</text>
-  <text x="15.2285" y="-8.7452" font-size="0.0984" font-family="Arial">修正者</text>
-  <text x="15.7436" y="-8.7452" font-size="0.0984" font-family="Arial">修　正</text>
-
-
-
+  <text x="14.3171" y="-8.7452" font-size="0.0984" text-anchor="middle" font-family="Arial">版次</text>
   <text x="14.3171" y="-8.6461" font-size="0.08274" text-anchor="middle" font-family="Arial">REV.</text>
+  
+  <text x="14.8188" y="-8.7452" font-size="0.0984" text-anchor="middle" font-family="Arial">日期</text>
   <text x="14.8188" y="-8.6461" font-size="0.08274" text-anchor="middle" font-family="Arial">DATE</text>
+
+  <text x="15.3857" y="-8.7452" font-size="0.0984" text-anchor="middle" font-family="Arial">修正者</text>
   <text x="15.3857" y="-8.6461" font-size="0.08274" text-anchor="middle" font-family="Arial">REV. BY</text>
+
+  <text x="15.7436" y="-8.7452" font-size="0.0984" font-family="Arial">修　正</text>
   <text x="15.7456" y="-8.6461" font-size="0.08274" font-family="Arial">DESCRIPTION</text>
 
 
@@ -80,12 +80,12 @@
 
   <text x="14.1661" y="-4.6956" font-size="0.08274" font-family="Arial">TITLE</text>
 
-  <text x="14.1555" y="-3.5729" font-size="0.08274" font-family="Arial">PROJECT:</text>
-  <text x="14.1555" y="-3.2407" font-size="0.08274" font-family="Arial">PACKAGE NAME:</text>
-  <text x="14.1555" y="-2.9373" font-size="0.08274" font-family="Arial">DWG FILE NAME:</text>
-  <text x="14.1555" y="-0.6092" font-size="0.08274" font-family="Arial">DRAWING NAME:</text>
-  <text x="16.3040" y="-0.8981" font-size="0.08274" font-family="Arial">SCALE:</text>
-  <text x="16.4879" y="-0.7865" font-size="0.08274" font-family="Arial">N.T.S.</text>
+  <text x="14.1555" y="-3.5739" font-size="0.08274" font-family="Arial">PROJECT:</text>
+  <text x="14.1555" y="-3.2621" font-size="0.08274" font-family="Arial">PACKAGE NAME:</text>
+  <text x="14.1555" y="-2.9383" font-size="0.08274" font-family="Arial">DWG FILE NAME:</text>
+  <text x="14.1555" y="-0.6102" font-size="0.08274" font-family="Arial">DRAWING NAME:</text>
+  <text x="16.3040" y="-0.8991" font-size="0.08274" font-family="Arial">SCALE:</text>
+  <text x="16.4879" y="-0.7875" font-size="0.08274" font-family="Arial">N.T.S.</text>
 
 
 
@@ -116,6 +116,9 @@
 
     <line x1="14.1624" x2="14.1624" y1="0" y2="-11" />
     
+
+    
+    <rect x="0.9438" y="-2.3831" width="1.7260" height="1.2745"/>
   </g>
 
 </svg>
