@@ -1,7 +1,8 @@
 <svg viewBox="-1.0468 -0.7247 2.0936 1.5460" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" stroke="black" stroke-width="0.01">
+  <clipPath id="wafer">
     <path d="M -0.2986 0.664 A 0.7465 0.7247 0 1 1 0.2986 0.664 z" />
-
+  </clipPath>
+  <g id="cuts">
     <line x1="-0.67185" x2="-0.67185" y1="0.664" y2="-0.7247" />
     <line x1="-0.5972" x2="-0.5972" y1="0.664" y2="-0.7247" />
     <line x1="-0.52255" x2="-0.52255" y1="0.664" y2="-0.7247" />
@@ -34,8 +35,9 @@
     <line x1="-0.7465" x2="0.7465" y1="0.332" y2="0.332"/>
     <line x1="-0.7465" x2="0.7465" y1="0.4427" y2="0.4427"/>
     <line x1="-0.7465" x2="0.7465" y1="0.5533" y2="0.5533"/>
-
+    <path d="M -0.2986 0.664 A 0.7465 0.7247 0 1 1 0.2986 0.664 z" fill="none" />
   </g>
+  <use clip-path="url(#wafer)" href="#cuts" fill="none" stroke="black" stroke-width="0.01" />
   <g fill="red" stroke="none" stroke-width="0">
     <text x="0" y="0.2226" font-weight="bold" font-family="Garamond" textLength="2.135472" lengthAdjust="spacingAndGlyphs" text-anchor="middle" font-size="0.93296">tsmc</text>
     <rect x="-0.8218" y="0.7446" width="1.6436" height="0.0768"/>
