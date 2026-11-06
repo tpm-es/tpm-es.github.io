@@ -39,7 +39,7 @@
   </g>
   <use clip-path="url(#wafer)" href="#cuts" fill="none" stroke="black" stroke-width="0.01" />
   <g fill="red" stroke="none" stroke-width="0">
-    <text x="0" y="0.2226" font-weight="bold" font-family="Garamond" textLength="2.135472" lengthAdjust="spacingAndGlyphs" text-anchor="middle" font-size="0.93296">tsmc</text>
+    <text x="-1.0900" y="0.2226" letter-spacing="-0.05" font-weight="bold" font-family="Garamond" textLength="2.1000" lengthAdjust="spacingAndGlyphs" font-size="0.93296">tsmc</text>
     <rect x="-0.8218" y="0.7446" width="1.6436" height="0.0768"/>
   </g>
 </svg>
