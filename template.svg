@@ -91,15 +91,15 @@
 
 
   
-  <text x="11.0758" y="-10.2935" font-size="0.17024" text-anchor="middle" font-family="Arial">DESIGN REVIEW</text>
-  <text x="8.9587" y="-10.0531" font-size="0.17024" font-family="Arial">APPROVER</text>
-  <text x="10.5753" y="-10.0531" font-size="0.17024" font-family="Arial">SIGNATURE</text>
-  <text x="12.5969" y="-10.0531" font-size="0.17024" font-family="Arial">DATE</text>
-  <text x="8.9587" y="-9.8126" font-size="0.17024" font-family="Arial">YAHO WGL</text>
-  <text x="8.9587" y="-9.5722" font-size="0.17024" font-family="Arial">TSMC EE</text>
-  <text x="8.9587" y="-9.3319" font-size="0.17024" font-family="Arial">TSMC FD</text>
-  <text x="8.9587" y="-9.0915" font-size="0.17024" font-family="Arial">TSMC PM</text>
-  <text x="8.9587" y="-8.8511" font-size="0.17024" font-family="Arial">TSMC LSC</text>
+  <text x="11.0758" y="-10.2910" font-size="0.17024" text-anchor="middle" font-family="Arial">DESIGN REVIEW</text>
+  <text x="8.9587" y="-10.0506" font-size="0.17024" font-family="Arial">APPROVER</text>
+  <text x="10.5753" y="-10.0506" font-size="0.17024" font-family="Arial">SIGNATURE</text>
+  <text x="12.5969" y="-10.0506" font-size="0.17024" font-family="Arial">DATE</text>
+  <text x="8.9587" y="-9.8102" font-size="0.17024" font-family="Arial">YAHO WGL</text>
+  <text x="8.9587" y="-9.5698" font-size="0.17024" font-family="Arial">TSMC EE</text>
+  <text x="8.9587" y="-9.3294" font-size="0.17024" font-family="Arial">TSMC FD</text>
+  <text x="8.9587" y="-9.0890" font-size="0.17024" font-family="Arial">TSMC PM</text>
+  <text x="8.9587" y="-8.8486" font-size="0.17024" font-family="Arial">TSMC LSC</text>
 
   <image x="0.9438" y="-2.3831" width="1.7260" height="1.2745" href="tsmc.svg"></image>
 
