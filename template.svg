@@ -1,5 +1,6 @@
 <svg viewBox="0 -11 17 11" xmlns="http://www.w3.org/2000/svg">
   <g fill="none" stroke="currentColor" stroke-width="0.01">
+    <!-- <rect x="0.0000" y="-11.0000" width="17.0000" height="11.0000"/> -->
     <rect x="0.2835" y="-10.7165" width="16.5465" height="10.4330" />
     <line x1="14.0989" y1="-10.7165" x2="14.0989" y2="-0.2835" />
     <line x1="14.7225" y1="-4.8114" x2="14.7225" y2="-8.5888" />
@@ -24,23 +25,6 @@
     <path d="M 14.5353 -10.2900 V -8.5888
              M 15.1022 -10.2900 V -8.5888
              M 15.6692 -10.2900 V -8.5888" />
-
-
-
-
-
-    <rect x="8.6369" y="-10.4714" width="4.9838" height="1.6828" />
-    <path d="M 8.6369 -10.2310 H 13.6207
-             M 8.6369 -9.9906 H 13.6207
-             M 8.6369 -9.7502 H 13.6207
-             M 8.6369 -9.5098 H 13.6207
-             M 8.6369 -9.2694 H 13.6207
-             M 8.6369 -9.0290 H 13.6207" />
-    <path d="M 10.1425 -10.2310 V -8.7886
-             M 12.0023 -10.2310 V -8.7886" />
-
-
-
   </g>
   <text x="15.4514" y="-10.552" font-size="0.13132" font-weight="bold" text-anchor="middle" font-family="Arial">CONFIDENTIAL INFORMATION</text>
   <text x="15.4514" y="-10.395" font-size="0.13132" font-weight="bold" text-anchor="middle" font-family="Arial">TSMC PROJECT</text>
@@ -75,6 +59,7 @@
   <text x="14.5932" y="-4.8739" transform="rotate(-90 14.5932 -4.8739) translate(0 0.0591)" font-size="0.08274" font-weight="bold" font-family="Arial">480-504-3023</text>
 
 
+  <text x="15.4563" y="-4.2596" font-size="0.14224" text-anchor="middle" font-family="Arial">COVER SHEET</text>
 
 
 
@@ -90,7 +75,20 @@
 
 
 
-  
+
+
+  <g fill="none" stroke="currentColor" stroke-width="0.01">
+    <rect x="8.6369" y="-10.4714" width="4.9838" height="1.6828" />
+    <rect x="8.6369" y="-8.6597" width="4.9838" height="4.8630" />
+    <path d="M 8.6369 -10.2310 H 13.6207
+             M 8.6369 -9.9906 H 13.6207
+             M 8.6369 -9.7502 H 13.6207
+             M 8.6369 -9.5098 H 13.6207
+             M 8.6369 -9.2694 H 13.6207
+             M 8.6369 -9.0290 H 13.6207" />
+    <path d="M 10.1425 -10.2310 V -8.7886
+             M 12.0023 -10.2310 V -8.7886" />
+  </g>
   <text x="11.0758" y="-10.2910" font-size="0.17024" text-anchor="middle" font-family="Arial">DESIGN REVIEW</text>
   <text x="8.9587" y="-10.0506" font-size="0.17024" font-family="Arial">APPROVER</text>
   <text x="10.5753" y="-10.0506" font-size="0.17024" font-family="Arial">SIGNATURE</text>
@@ -101,11 +99,24 @@
   <text x="8.9587" y="-9.0890" font-size="0.17024" font-family="Arial">TSMC PM</text>
   <text x="8.9587" y="-8.8486" font-size="0.17024" font-family="Arial">TSMC LSC</text>
 
+
+  <g fill="none" stroke="currentColor" stroke-width="0.01">
+    <line x1="0.7455" y1="-8.7403" x2="3.9000" y2="-8.7403" />
+    <line x1="0.7455" y1="-7.8538" x2="3.9000" y2="-7.8538" />
+    <line x1="0.7455" y1="-6.1929" x2="2.2606" y2="-6.1929" />
+  </g>
+  <text x="5.3784" y="-10.2394" font-size="0.34034" text-anchor="middle" font-family="Arial">FOK INSTALLATION</text>
+  <text x="3.7784" y="-9.4646" font-size="0.34034" text-anchor="middle" font-family="Arial">REFERENCE PACKAGE:</text>
+  <text x="0.7455" y="-8.7861" font-size="0.34034" letter-spacing="-0.005" font-weight="bold" font-family="Verdana">SCOPE OF WORK</text>
+  <text x="0.7455" y="-7.8997" font-size="0.25536" font-weight="bold" font-family="Arial">F21 BUILDING SUMMARY</text>
+  <text x="0.7455" y="-6.2387" font-size="0.25536" font-weight="bold" font-family="Arial">CODE DATA</text>
+  
+  
+
   <image x="0.9438" y="-2.3831" width="1.7260" height="1.2745" href="tsmc.svg"></image>
 
-  <g fill="none" stroke="lime" stroke-width="0.005">
-    <rect x="0" y="-11" width="17" height="11"/>    
+  <!-- <g fill="none" stroke="lime" stroke-width="0.005">
     <rect x="0.9438" y="-2.3831" width="1.7260" height="1.2745"/>
-  </g>
+  </g> -->
 
 </svg>
